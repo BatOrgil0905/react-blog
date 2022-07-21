@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
@@ -28,7 +29,7 @@ const Register = () => {
         </button>
       </form>
       <button className="my-4 py-2 px-4 bg-blue-300 w-[345px] cursor-pointer duration-300 hover:text-white hover:bg-blue-600">
-        Login
+        <Link to="/login">Login</Link>
       </button>
     </div>
   );

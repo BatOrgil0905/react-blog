@@ -1,8 +1,11 @@
 import React from "react";
 import { ProfilePic } from "./images/Images";
 import { SearchIcon } from "./Icons";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
+  const user = true;
+
   return (
     <div className="w-full h-[50px] bg-white sticky top-0 flex items-center z-20">
       <div className="flex-[3] flex items-center justify-center">
@@ -14,21 +17,33 @@ const NavBar = () => {
       <div className="flex-[6]">
         <ul className="flex justify-center m-0 p-0 ">
           <li className="mr-6 text-xl font-light cursor-pointer duration-300 hover:text-gray-600 hover:scale-105">
-            Home
+            <Link to="/">Home</Link>
           </li>
           <li className="mr-6 text-xl font-light cursor-pointer duration-300 hover:text-gray-600 hover:scale-105">
-            About
+            <Link to="/about">About</Link>
           </li>
           <li className="mr-6 text-xl font-light cursor-pointer duration-300 hover:text-gray-600 hover:scale-105">
-            Write
+            <Link to="/write">Write</Link>
           </li>
           <li className="mr-6 text-xl font-light cursor-pointer duration-300 hover:text-gray-600 hover:scale-105">
-            Logout
+            {user && "Logout"}
           </li>
         </ul>
       </div>
       <div className="flex-[3] flex items-center justify-center">
-        <ProfilePic />
+        {user ? (
+          <ProfilePic />
+        ) : (
+          <ul className="flex justify-center m-0 p-0">
+            <li className="mr-6 text-xl font-light cursor-pointer duration-300 hover:text-gray-600 hover:scale-105">
+              <Link to="/login">Login</Link>
+            </li>
+            <li className="mr-6 text-xl font-light cursor-pointer duration-300 hover:text-gray-600 hover:scale-105">
+              <Link to="/register">Register</Link>
+            </li>
+          </ul>
+        )}
+
         <SearchIcon />
       </div>
     </div>
