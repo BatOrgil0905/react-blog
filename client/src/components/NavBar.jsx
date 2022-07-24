@@ -4,7 +4,7 @@ import { SearchIcon } from "./Icons";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
-  const user = true;
+  const user = false;
 
   return (
     <div className="w-full h-[50px] bg-white sticky top-0 flex items-center z-20">
