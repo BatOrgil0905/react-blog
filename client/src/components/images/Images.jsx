@@ -10,7 +10,7 @@ import postPicFour from "../images/postPicFour.jpg";
 import postPicFive from "../images/postPicFive.jpg";
 
 export const HomeImage = () => {
-  return <img className="w-full h-[100vh] object-cover" src={bgHome} alt="" />;
+  return <img className="w-full h-screen object-cover" src={bgHome} alt="" />;
 };
 
 export const ProfilePic = () => {

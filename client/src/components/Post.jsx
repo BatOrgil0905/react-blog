@@ -28,6 +28,7 @@ const Post = () => {
           suscipit non ab perspiciatis magnam a recusandae sequi, eius ipsa!
           Laborum, officiis nisi.
         </p>
+        <h1 className="my-2 p-1 mx-1">Autor: <a className="font-semibold">Bat-Orgil.B</a></h1>
       </div>
     </div>
   );
