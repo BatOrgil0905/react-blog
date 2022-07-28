@@ -27,7 +27,7 @@ export const ProfilePic = () => {
 
 export const SettingsProfilePic = () => {
   return (
-    <div className="w-[100px] h-[100px] rounded-md overflow-hidden">
+    <div className="w-[200px] h-[200px] rounded-md overflow-hidden">
       <img
         className="w-full h-full bg-cover object-cover"
         src={proPic}

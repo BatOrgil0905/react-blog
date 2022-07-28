@@ -42,7 +42,7 @@ export const AddIcon = () => {
   return (
     <FontAwesomeIcon
       icon={faPlus}
-      className="text-2xl text-orange-300 cursor-pointer border border-black rounded-full px-2 py-1.5"
+      className="text-2xl text-orange-300 cursor-pointer border border-gray-600 rounded-full px-2 py-1.5 duration-300 hover:bg-gray-600"
       title="Add Image"
     />
   );
@@ -52,7 +52,7 @@ export const UserIcon = () => {
   return (
     <FontAwesomeIcon
       icon={faUserCircle}
-      className="text-4xl mx-4 text-green-400 cursor-pointer"
+      className="text-4xl mx-4 p-4 text-green-400 cursor-pointer duration-300 hover:scale-125"
       title="Add New Profile Picture"
     />
   );
