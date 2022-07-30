@@ -1,16 +1,18 @@
 import React from "react";
 import Header from "../components/Header";
 import Posts from "../components/Posts";
-import SideBar from "../components/SideBar";
+import Footer from "../components/Footer";
+// import SideBar from "../components/SideBar";
 
 const Home = () => {
   return (
-    <div>
+    <div className="bg-white">
       <Header />
       <div className="flex flex-row my-6">
         <Posts />
-        <SideBar />
+        {/* <SideBar /> */}
       </div>
+      <Footer />
     </div>
   );
 };

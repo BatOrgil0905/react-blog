@@ -50,7 +50,7 @@ export const AboutMePic = () => {
 export const PostImageOne = () => {
   return (
     <img
-      className="w-full h-auto object-cover bg-cover rounded-md"
+      className="w-auto h-auto dark:bg-black object-cover bg-cover rounded-md"
       src={postPicOne}
       alt="pp1"
     />

@@ -7,13 +7,15 @@ import {
   faTrashAlt,
   faPlus,
   faUserCircle,
+  faMoon,
+  faSun
 } from "@fortawesome/free-solid-svg-icons";
 
 export const SearchIcon = () => {
   return (
     <FontAwesomeIcon
       icon={faSearch}
-      className="text-lg text-gray-600 cursor-pointer ml-4"
+      className="text-lg text-gray-600 cursor-pointer ml-2 lg:ml-4"
     />
   );
 };
@@ -42,7 +44,7 @@ export const AddIcon = () => {
   return (
     <FontAwesomeIcon
       icon={faPlus}
-      className="text-2xl text-orange-300 cursor-pointer border border-gray-600 rounded-full px-2 py-1.5 duration-300 hover:bg-gray-600"
+      className="text-2xl text-orange-500 cursor-pointer border border-gray-400 rounded-full px-2 py-1.5 duration-300 hover:bg-gray-400 "
       title="Add Image"
     />
   );
@@ -57,3 +59,21 @@ export const UserIcon = () => {
     />
   );
 };
+
+export const MoonIcon = () => {
+  return (
+    <FontAwesomeIcon
+      icon={faMoon}
+      className="text-gray-500 dark:text-gray-400 text-2xl cursor-pointer"
+    />
+  );
+}
+
+export const SunIcon = () => {
+  return (
+    <FontAwesomeIcon
+      icon={faSun}
+      className="text-gray-500 dark:text-gray-400 text-2xl cursor-pointer"
+    />
+  );
+}

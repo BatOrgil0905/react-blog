@@ -1,12 +1,14 @@
 import React from 'react'
-import SideBar from '../components/SideBar'
+import Footer from '../components/Footer'
+// import SideBar from '../components/SideBar'
 import SinglePost from '../components/SinglePost'
 
 const Single = () => {
   return (
-    <div className='flex'>
+    <div className=''>
         <SinglePost/>
-        <SideBar/>
+        {/* <SideBar/> */}
+        <Footer/>
     </div>
   )
 }
