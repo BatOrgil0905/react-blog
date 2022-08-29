@@ -12,7 +12,7 @@ const Settings = () => {
     <>
       <div className="flex">
         <div className="flex-[9] mx-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col lg:flex-row justify-between my-4">
             <span className="text-2xl my-4 ">
               Update Your Account
             </span>
@@ -20,7 +20,7 @@ const Settings = () => {
               Delete Your Account
             </span>
           </div>
-          <form className="my-4">
+          <form className="my-8">
             <label className="">Profile Picture</label>
             <div className="flex justify-center items-center my-4">
               <SettingsProfilePic />

@@ -10,7 +10,7 @@ const Footer = () => {
             <Link to="/">BLOGGERY</Link>
           </h1>
 
-          <div className="px-[170%]"></div>
+          <div className="px-[25%] md:px-[50%] lg:px-[100%] xl:px-[170%]"></div>
 
           {/* <div className="flex flex-col px-[20%]">
             <h1 className="text-center py-2 text-xl">

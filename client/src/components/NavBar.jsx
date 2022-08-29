@@ -4,9 +4,11 @@ import { SearchIcon, SunIcon } from "./Icons";
 import { Link } from "react-router-dom";
 import Switch from "../theme/Switch";
 import { MenuDesktop, MenuMobile, MenuToggle } from "./Menu";
+import { useContext } from "react";
+import { Context } from "../context/Context";
 
 const NavBar = () => {
-  const user = true;
+  const {user} = useContext(Context);
 
   function openResMenu(){
     const myOpenMenu = document.querySelector(".myOpenMenu");
@@ -25,7 +27,7 @@ const NavBar = () => {
         <div className="sticky top-0 z-20">
           <a
             href="javascript:void(0)"
-            className="absolute right-1 pr-4 pt-2 text-4xl"
+            className="absolute right-1 pr-4  text-4xl"
             onClick={closeMenu}
           >
             x
@@ -62,7 +64,7 @@ const NavBar = () => {
       <div className="flex-[3] flex items-center justify-center">
         {user ? (
           <Link to="/account">
-            <ProfilePic />
+            <ProfilePic data={user}/>
           </Link>
         ) : (
           <ul className="flex justify-center m-0 p-0">

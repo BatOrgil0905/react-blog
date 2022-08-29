@@ -24,7 +24,7 @@ export const EditIcon = () => {
   return (
     <FontAwesomeIcon
       icon={faEdit}
-      className="text-xl text-green-500 cursor-pointer mx-2"
+      className="text-xl text-green-500 cursor-pointer mx-2 duration-300 hover:scale-110"
       title="Edit Post"
     />
   );
@@ -34,7 +34,7 @@ export const DeleteIcon = () => {
   return (
     <FontAwesomeIcon
       icon={faTrashAlt}
-      className="text-xl text-red-500 cursor-pointer mx-2"
+      className="text-xl text-red-500 cursor-pointer mx-2 duration-300 hover:scale-110"
       title="Delete Post"
     />
   );

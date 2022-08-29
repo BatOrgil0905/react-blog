@@ -35,3 +35,8 @@
   display: block;
   transition: 0.3s;
  }
+
+ .loginBtn:disabled{
+  cursor: not-allowed;
+  background-color: lightpink;
+ }

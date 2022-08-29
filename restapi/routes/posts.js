@@ -4,27 +4,26 @@ const route = express.Router();
 const Post = require("../models/Post");
 
 //Create Post
-route.post("/add-post", async (req, res) => {
+route.post("/", async (req, res) => {
   const post = new Post(req.body);
   try {
     const savedPost = await post.save();
-    res.json({
+    res.status(200).json({
       message: "Блог амжилттай орлоо.",
       savedPost,
     });
   } catch (err) {
-    res.json(err);
+    res.status(500).json(err);
   }
 });
 
 //Get Single Post
-route.get("/post/:id", async (req, res) => {
-  const postId = req.params.id;
+route.get("/:id", async (req, res) => {
   try {
-    const post = await Post.findById(postId);
-    res.json(post);
+    const post = await Post.findById(req.params.id);
+    res.status(200).json(post);
   } catch (err) {
-    res.json({
+    res.status(500).json({
       message: "Хүсэлт амжилтгүй боллоо.",
       err,
     });
@@ -32,7 +31,7 @@ route.get("/post/:id", async (req, res) => {
 });
 
 //Get All Posts
-route.get("/posts/", async (req, res) => {
+route.get("/", async (req, res) => {
   const username = req.query.username;
   const category = req.query.category;
 
@@ -41,13 +40,13 @@ route.get("/posts/", async (req, res) => {
     if (username) {
       posts = await Post.find({ username: username });
     } else if (category) {
-      posts = await Post.find({ category: { $in: [category] } });
+      posts = await Post.find({ categories: { $in: [category] } });
     } else {
       posts = await Post.find();
     }
-    res.json(posts);
+    res.status(200).json(posts);
   } catch (err) {
-    res.json({
+    res.status(500).json({
       message: "Хүсэлт амжилтгүй боллоо.",
       err,
     });
@@ -55,52 +54,49 @@ route.get("/posts/", async (req, res) => {
 });
 
 //Update Post
-route.put("/update-post/:id", async (req, res) => {
-  const postId = req.params.id;
+route.put("/:id", async (req, res) => {
   try {
-    const post = await Post.findById(postId);
+    const post = await Post.findById(req.params.id);
     if (post.username === req.body.username) {
       try {
         const updatedPost = await Post.findByIdAndUpdate(
-          postId,
+          req.params.id,
           {
             $set: req.body,
           },
           { new: true }
         );
-        res.json({
+        res.status(200).json({
           message: "Блог амжилттай шинэчлэгдлээ.",
           updatedPost,
         });
       } catch (err) {
-        res.json(err);
+        res.status(500).json(err);
       }
     } else {
-      res.json("Хүсэлт амжилтгүй боллоо.");
+      res.status(401).json("Хүсэлт амжилтгүй боллоо.");
     }
   } catch (err) {
-    res.json(err);
+    res.status(500).json(err);
   }
 });
 
 //Delete Post
-route.delete("/delete-post/:id", async (req, res) => {
-  const postId = req.params.id;
-
+route.delete("/:id", async (req, res) => {
   try {
-    const post = await Post.findById(postId);
+    const post = await Post.findById(req.params.id);
     if (post.username === req.body.username) {
       try {
         await post.delete();
-        res.json("Блог амжилттай устгагдлаа.");
+        res.status(200).json("Блог амжилттай устгагдлаа.");
       } catch (err) {
-        res.json(err);
+        res.status(500).json(err);
       }
     } else {
-      res.json("Хүсэлт амжилтгүй боллоо.");
+      res.status(401).json("Хүсэлт амжилтгүй боллоо.");
     }
   } catch (err) {
-    res.json(err);
+    res.status(500).json(err);
   }
 });
 

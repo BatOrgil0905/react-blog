@@ -1,5 +1,6 @@
 import React from "react";
 // import Footer from "./Footer";
+import { Link } from "react-router-dom";
 
 // --PostPics--
 import {
@@ -10,34 +11,45 @@ import {
   // PostImageFive,
 } from "./images/Images";
 
-const Post = () => {
+const Post = ({ data }) => {
+  const publicFolder = "http://localhost:5000/images/";
+
   return (
     <>
-      <div className="my-3 mx-2 cursor-pointer bg-gray-50 duration-300 hover:scale-105 hover:shadow-md">
-        <PostImageOne />
-        <div>
-          <div className="text-sm text-gray-600 flex flex-row gap-2 my-1 p-1">
-            <h1>Music</h1>
-            <h1>Life</h1>
+      <Link to={`/post/${data._id}`}>
+        <div className="my-3 mx-2 h-full cursor-pointer bg-gray-50 duration-300 hover:scale-105 hover:shadow-md">
+          {data.photo && (
+            <img
+              className="w-auto h-auto dark:bg-black object-cover bg-cover rounded-md"
+              src={publicFolder + data.photo}
+              alt="pp1"
+            />
+          )}
+          <div>
+            <div className="text-sm text-gray-600 flex flex-row gap-2 my-1 p-1">
+              {data.categories.map((category) => (
+                <h1>{category.name}</h1>
+              ))}
+            </div>
+
+            <p className="text-lg font-semibold my-1 p-1">{data.title}</p>
+
+            <h2 className="text-sm text-gray-700 border-y border-gray-600 p-1">
+              {new Date(data.createdAt).toDateString()}
+            </h2>
+            <p className="text-[14px] p-1">
+              {data.description.substring(0, 100)}...
+            </p>
+            <h1 className="my-2 p-1 mx-1 ">
+              Autor:
+              <Link to={`/?username=${data.username}`}>
+                <b>{data.username}</b>
+              </Link>
+            </h1>
           </div>
-          <p className="text-lg font-semibold my-1 p-1">
-            This is the Bloggery.
-          </p>
-          <h2 className="text-sm text-gray-700 border-y border-gray-600 p-1">
-            1 hour ago
-          </h2>
-          <p className="text-[14px] p-1">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-            velit tenetur doloremque mollitia pariatur molestiae excepturi
-            aperiam suscipit non ab perspiciatis magnam a recusandae sequi, eius
-            ipsa! Laborum, officiis nisi.
-          </p>
-          <h1 className="my-2 p-1 mx-1">
-            Autor: <b>Bat-Orgil.B</b>
-          </h1>
         </div>
-      </div>
-      {/* <Footer/> */}
+        {/* <Footer/> */}
+      </Link>
     </>
   );
 };

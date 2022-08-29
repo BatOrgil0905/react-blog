@@ -6,13 +6,17 @@ const User = require("../models/User");
 const Post = require("../models/Post");
 
 //Get Single User
-route.get("/user/:id", async (req, res) => {
+route.get("/:id", async (req, res) => {
   const userId = req.params.id;
   try {
     const user = await User.findById(userId);
-    res.json(user);
+    const {password, ...others} = user._doc;
+    res.status(200).json({
+      message: "Хүсэлт амжилттай боллоо.",
+      others
+    });
   } catch (err) {
-    res.json({
+    res.status(500).json({
       message: "Хүсэлт амжилтгүй боллоо.",
       err,
     });
@@ -20,56 +24,54 @@ route.get("/user/:id", async (req, res) => {
 });
 
 //Update
-route.put("/update-user/:id", async (req, res) => {
-  const userId = req.body.userId;
-  if (userId === req.params.id) {
-    const hashedPassword = req.body.password;
-    if (hashedPassword) {
+route.put("/:id", async (req, res) => {
+  if (req.body.userId === req.params.id) {
+    if (req.body.password) {
       const salt = await bcrypt.genSalt(10);
-      req.body.password = await bcrypt.hash(hashedPassword, salt);
+      req.body.password = await bcrypt.hash(req.body.password, salt);
     }
 
     try {
-      const updateUser = await User.findByIdAndUpdate(userId, {
+      const updateUser = await User.findByIdAndUpdate(req.params.id, {
         $set: req.body,
-      });
-      res.json({
+      },
+      {new: true });
+      res.status(200).json({
         message: "Хэрэглэгч амжилттай шинэчлэгдлээ.",
         updateUser,
       });
     } catch (err) {
-      res.json(err);
+      res.status(400).json(err);
     }
   } else {
-    res.json({
+    res.status(401).json({
       message: "Хүсэлт амжилтгүй боллоо.",
     });
   }
 });
 
 //Delete
-route.delete("/delete-user/:id", async (req, res) => {
-  const userId = req.body.userId;
-  if (userId === req.params.id) {
+route.delete("/:id", async (req, res) => {
+  if (req.body.userId === req.params.id) {
     try {
-      const user = await User.findById(userId);
+      const user = await User.findById(req.params.id);
       try {
         await Post.deleteMany({ username: user.username });
-        await User.findByIdAndDelete(userId);
-        res.json({
+        await User.findByIdAndDelete(req.params.id);
+        res.status(200).json({
           message: "Хэрэглэгч амжилттай устгагдлаа.",
         });
       } catch (err) {
-        res.json(err);
+        res.status(400).json(err);
       }
     } catch (err) {
-      res.json({
+      res.status(404).json({
         message: "Хэрэглэгч олдсонгүй.",
         err,
       });
     }
   } else {
-    res.json({
+    res.status(401).json({
       message: "Хүсэлт амжилтгүй боллоо.",
     });
   }

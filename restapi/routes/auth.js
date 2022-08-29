@@ -19,39 +19,42 @@ route.post("/register", async (req, res) => {
     });
 
     const saveUser = await user.save();
-    res.json({
+    res.status(200).json({
         message: "Шинэ хэрэглэгч амжилттай үүслээ",
         saveUser
     });
   } catch (err) {
-    res.json(err);
+    res.status(500).json(err);
   }
 });
 
 //Login
 route.post("/login", async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username } = req.body;
     const user = await User.findOne({ username: username });
     if (!user) {
-      return res.json({
+      return res.status(400).json({
         message: "Хэрэглэгч олдсонгүй!",
       });
     }
 
-    const validate = await bcrypt.compare(password, user.password);
+    const validate = await bcrypt.compare(req.body.password, user.password);
     if (!validate) {
-      return res.json({
+      return res.status(400).json({
         message: "Нууц үг буруу байна.",
       });
     }
 
-    res.json({
+    //Password хэсгийг хасаж байна.
+    const {password, ...others} = user._doc;
+
+    res.status(200).json({
       message: "Амжилттай нэвтэрлээ.",
-      user,
+      others,
     });
   } catch (err) {
-    res.json(err);
+    res.status(500).json(err);
   }
 });
 
