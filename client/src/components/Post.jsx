@@ -17,7 +17,7 @@ const Post = ({ data }) => {
   return (
     <>
       <Link to={`/post/${data._id}`}>
-        <div className="my-3 mx-2 h-full cursor-pointer bg-gray-50 duration-300 hover:scale-105 hover:shadow-md">
+        <div className="my-3 mx-2 h-auto cursor-pointer bg-gray-50 duration-300 hover:scale-105 hover:shadow-md">
           {data.photo && (
             <img
               className="w-auto h-auto dark:bg-black object-cover bg-cover rounded-md"

@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 import { Context } from "../context/Context";
@@ -8,8 +8,11 @@ const Login = () => {
   const userRef = useRef();
   const passwordRef = useRef();
   const {dispatch, isFetching} = useContext(Context);
+  const [error, setError] = useState(false);
+
 
   const handleSubmit = async (e) => {
+    setError(false)
     e.preventDefault();
     dispatch({type: "LOGIN_START"});
     try{
@@ -19,6 +22,7 @@ const Login = () => {
       })
       dispatch({type: "LOGIN_SUCCESS", payload: res.data});
     } catch(err){
+      setError(true)
       dispatch({type: "LOGIN_FAIL"})
     }
   };
@@ -55,6 +59,9 @@ const Login = () => {
         <button className="my-4 py-2 px-4 bg-green-300 w-[345px] cursor-pointer duration-300 hover:text-white hover:bg-green-600">
           <Link to="/register">Register</Link>
         </button>
+        {error && (
+          <span className="my-4 text-red-400">Something went wrong!</span>
+        )}
       </div>
       <Footer />
     </>

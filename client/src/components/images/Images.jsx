@@ -10,27 +10,29 @@ import postPicFour from "../images/postPicFour.jpg";
 import postPicFive from "../images/postPicFive.jpg";
 
 export const HomeImage = () => {
-  return <img className="w-full h-screen object-cover" src={bgHome} alt="" />;
+  return (<img className="w-full h-screen object-cover" src={bgHome} alt="" />)
 };
 
 export const ProfilePic = ({data}) => {
+  const publicFolder = "http://localhost:5000/images/";
+
   return (
-    <div className="w-[45px] h-[45px] rounded-full overflow-hidden">
+    <div className="w-[45px] h-[45px] rounded-full overflow-hidden cursor-pointer">
       <img
         className="w-full h-full bg-cover object-cover rounded-full"
-        src={data.ProfilePic || proPic}
+        src={publicFolder + data.profilePic || proPic}
         alt="profile pic"
       />
     </div>
   );
 };
 
-export const SettingsProfilePic = () => {
+export const SettingsProfilePic = ({data}) => {
   return (
     <div className="w-[200px] h-[200px] rounded-md overflow-hidden">
       <img
         className="w-full h-full bg-cover object-cover"
-        src={proPic}
+        src={data}
         alt="profile pic"
       />
     </div>
@@ -60,24 +62,22 @@ export const PostImageTwo = () => {
 };
 
 export const PostImageThree = ({data}) => {
+  const publicFolder = "http://localhost:5000/images/";
+
   return (
     <img
       className="w-full h-[415px] object-cover bg-cover rounded-md"
-      src={data.photo}
+      src={publicFolder + data.photo}
       alt="pp3"
     />
   );
 };
 
-export const PostImageFour = ({data}) => {
-  return (
-    <img
-      className="w-[75%] h-[415px] object-cover bg-cover rounded-md"
-      src={URL.createObjectURL(data)}
-      alt="pp4"
-    />
-  );
-};
+// export const PostImageFour = ({data}) => {
+//   return (
+   
+//   );
+// };
 
 export const PostImageFive = () => {
   return (
