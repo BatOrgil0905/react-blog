@@ -23,7 +23,6 @@ const Home = () => {
       <Header />
       <div className="flex flex-row my-6">
         <Posts posts={posts} />
-        {/* <SideBar /> */}
       </div>
       <Footer />
     </div>

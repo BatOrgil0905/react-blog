@@ -14,10 +14,19 @@ const UserSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
+      min: 6,
     },
     profilePic: {
       type: String,
       default: "",
+    },
+    followers: {
+      type: Array,
+      default: [],
+    },
+    followings: {
+      type: Array,
+      default: [],
     },
   },
   { timestamps: true }

@@ -25,9 +25,9 @@ export const MenuDesktop = () => {
         <li className="py-2.5 mr-6 text-xl  font-light cursor-pointer duration-300 hover:text-gray-600 hover:scale-105 ">
           <Link to="/">Home</Link>
         </li>
-        <li className="py-2.5 mr-6 text-xl font-light cursor-pointer duration-300 hover:text-gray-600 hover:scale-105 ">
+        {/* <li className="py-2.5 mr-6 text-xl font-light cursor-pointer duration-300 hover:text-gray-600 hover:scale-105 ">
           <Link to="/about">About</Link>
-        </li>
+        </li> */}
         <li className="py-2.5 mr-6 text-xl font-light cursor-pointer duration-300 hover:text-gray-600 hover:scale-105 ">
           <Link to="/write">Write</Link>
         </li>
@@ -35,7 +35,7 @@ export const MenuDesktop = () => {
           <li className="py-2.5 mr-6 text-xl font-light cursor-pointer duration-300 hover:text-gray-600 hover:scale-105 ">
             Category
           </li>
-          <div className="dropdown-content hidden absolute min-w-min bg-white shadow-lg right-[10%] py-4 z-20">
+          <div className="dropdown-content hidden absolute min-w-min bg-white shadow-lg leftt-[10%] py-4 z-20">
             {category.map((cat) => (
               <Link to={`/?cat=${cat.name}`}>
                 <li className="block text-xl font-light cursor-pointer px-6 py-1 hover:bg-gray-100 ">

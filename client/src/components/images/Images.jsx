@@ -8,6 +8,7 @@ import postPicTwo from "../images/postPicTwo.jpg";
 import postPicThree from "../images/postPicThree.jpg";
 import postPicFour from "../images/postPicFour.jpg";
 import postPicFive from "../images/postPicFive.jpg";
+import blank from "../images/blank_profile.jpg"
 
 export const HomeImage = () => {
   return (<img className="w-full h-screen object-cover" src={bgHome} alt="" />)
@@ -20,7 +21,7 @@ export const ProfilePic = ({data}) => {
     <div className="w-[45px] h-[45px] rounded-full overflow-hidden cursor-pointer">
       <img
         className="w-full h-full bg-cover object-cover rounded-full"
-        src={publicFolder + data.profilePic || proPic}
+        src={data.profilePic ? publicFolder + data.profilePic : blank}
         alt="profile pic"
       />
     </div>

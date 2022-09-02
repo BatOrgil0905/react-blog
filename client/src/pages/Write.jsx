@@ -41,10 +41,10 @@ const Write = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center py-6 ">
+      <div className="min-h-screen flex flex-col items-center justify-center py-6 ">
         {file && (
           <img
-            className="w-[75%] h-[415px] object-cover bg-cover rounded-md"
+            className="w-[75%] h-auto object-cover bg-cover rounded-md"
             src={URL.createObjectURL(file)}
             alt="pp4"
           />
@@ -69,7 +69,7 @@ const Write = () => {
             <input
               type="text"
               placeholder="title"
-              className="border-b-4 border-gray-600 w-[50%]"
+              className="border-b-4 p-2 border-gray-600 w-[50%]"
               onChange={(e) => setTitle(e.target.value)}
               // autoFocus={true}
             />
@@ -79,7 +79,7 @@ const Write = () => {
             <textarea
               placeholder="Write something here..."
               type="text"
-              className="border-b-4 border-gray-600 p-2 w-full active:border-b-4 active:border-black"
+              className="border-b-4 border-gray-600 p-2 h-[200px] w-full active:border-b-4 active:border-black"
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>

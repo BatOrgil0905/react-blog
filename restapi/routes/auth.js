@@ -11,6 +11,7 @@ route.post("/register", async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
+    // --Creating a new user--
     const { username, email } = req.body;
     const user = new User({
       username: username,
@@ -18,6 +19,7 @@ route.post("/register", async (req, res) => {
       password: hashedPassword,
     });
 
+    // --Saving a user and return response--
     const saveUser = await user.save();
     res.status(200).json({
         message: "Шинэ хэрэглэгч амжилттай үүслээ",
@@ -31,6 +33,8 @@ route.post("/register", async (req, res) => {
 //Login
 route.post("/login", async (req, res) => {
   try {
+
+    // --Checking username--
     const { username } = req.body;
     const user = await User.findOne({ username: username });
     if (!user) {
@@ -39,6 +43,7 @@ route.post("/login", async (req, res) => {
       });
     }
 
+    // --Checking password--
     const validate = await bcrypt.compare(req.body.password, user.password);
     if (!validate) {
       return res.status(400).json({

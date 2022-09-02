@@ -1,6 +1,6 @@
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt, faEdit, faThumbsUp, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
@@ -11,8 +11,10 @@ import { Context } from "../context/Context";
 const SinglePost = () => {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
-  const [post, setPost] = useState({});
+  const [like, setLike] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
   const { user } = useContext(Context);
+  const [post, setPost] = useState({});
   // --Update Post--
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -30,6 +32,7 @@ const SinglePost = () => {
   }, [path]);
 
   const deleteHandler = async () => {
+    alert(`Are you sure delete "${post.title}"`);
     try {
       await axios.delete(`/posts/${post._id}`, {
         data: { username: user.others.username },
@@ -48,9 +51,14 @@ const SinglePost = () => {
       setUpdateMode(false);
     } catch (err) {}
   };
+
+  const likeHandler = () => {
+    setLike(isLiked ? like - 1 : like + 1)
+    setIsLiked(!isLiked);
+  }
   // console.log(user.others.username)
   return (
-    <div className="flex-[9] px-6 py-6 ">
+    <div className="flex-[9] min-h-screen px-[7%] py-6 ">
       <div className="my-4 flex flex-col">
         {post.photo && <PostImageThree data={post} />}
         {updateMode ? (
@@ -84,7 +92,7 @@ const SinglePost = () => {
         )}
         {updateMode ? (
           <textarea
-            className="my-4 indent-4 text-justify lg:text-start border-b-2 border-gray-400 text-gray-500 focus:outline-0"
+            className="my-4 indent-4 h-full text-justify lg:text-start border-b-2 border-gray-400 text-gray-500 focus:outline-0"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
@@ -103,6 +111,25 @@ const SinglePost = () => {
           </h1>
 
           <h1>{new Date(post.createdAt).toDateString()}</h1>
+        </div>
+
+        <div className="flex flex-row gap-8">
+          <div className="flex flex-row gap-2 items-center">
+            <FontAwesomeIcon
+              icon={faThumbsUp}
+              className="my-4 text-lg border border-blue-500 rounded-full p-2.5 text-white bg-blue-500 cursor-pointer focus:text-blue-500 focus:bg-gray-200 focus:border-gray-200"
+              onClick={likeHandler}
+            />
+            <span>{like}</span>
+            <span>liked this post</span>
+          </div>
+          <div className="flex flex-row gap-2 item-center">
+            <FontAwesomeIcon
+              icon={faUserPlus}
+              className="my-4 text-lg border border-green-500 rounded-full p-2.5 py-3 text-white bg-green-500 cursor-pointer focus:text-green-500 focus:bg-gray-200 focus:border-gray-200"
+              title={`Follow ${post.username}`}
+            />
+          </div>
         </div>
         {updateMode && (
           <button
