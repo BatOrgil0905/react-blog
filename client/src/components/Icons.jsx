@@ -15,7 +15,7 @@ export const SearchIcon = () => {
   return (
     <FontAwesomeIcon
       icon={faSearch}
-      className="text-lg text-gray-600 cursor-pointer ml-2 lg:ml-4"
+      className="text-lg text-gray-600 cursor-pointer ml-2 lg:ml-4 dark:text-gray-300 md:px-2 lg:px-4 py-3"
     />
   );
 };
@@ -44,7 +44,7 @@ export const AddIcon = () => {
   return (
     <FontAwesomeIcon
       icon={faPlus}
-      className="text-2xl text-orange-500 cursor-pointer border border-gray-400 rounded-full px-2 py-1.5 duration-300 hover:bg-gray-400 "
+      className="text-2xl text-orange-500 cursor-pointer border border-gray-400 rounded-full px-2 py-1.5 duration-300 hover:bg-gray-200 "
       title="Add Image"
     />
   );

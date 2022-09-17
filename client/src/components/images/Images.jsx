@@ -16,12 +16,13 @@ export const HomeImage = () => {
 
 export const ProfilePic = ({data}) => {
   const publicFolder = "http://localhost:5000/images/";
+  // console.log(data);
 
   return (
     <div className="w-[45px] h-[45px] rounded-full overflow-hidden cursor-pointer">
       <img
         className="w-full h-full bg-cover object-cover rounded-full"
-        src={data.profilePic ? publicFolder + data.profilePic : blank}
+        src={data.others.profilePic ? publicFolder + data.others.profilePic : blank}
         alt="profile pic"
       />
     </div>

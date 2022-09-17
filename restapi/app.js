@@ -37,6 +37,8 @@ app.post("/upload", upload.single("file"), (req, res) => {
   res.status(200).json("Файл илгээгдлээ.")
 })
 
+
+
 mongoose
   .connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,

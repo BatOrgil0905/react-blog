@@ -62,10 +62,12 @@ const Settings = () => {
   // console.log(user)
   return (
     <>
-      <div className="flex">
+      <div className="flex bg-gray-50 dark:bg-gray-800">
         <div className="flex-[9] mx-4">
           <div className="flex flex-col lg:flex-row justify-between my-4">
-            <span className="text-2xl my-4 ">Update Your Account</span>
+            <span className="text-2xl my-4 dark:text-gray-300">
+              Update Your Account
+            </span>
             <span
               className="text-red-400 cursor-pointer duration-300 hover:text-lg"
               onClick={deleteHandler}
@@ -75,10 +77,12 @@ const Settings = () => {
           </div>
           <div className="flex items-center justify-center">
             <form
-              className="my-8 p-4 shadow-2xl w-[60%]"
+              className="my-8 p-4 shadow-2xl w-[60%] bg-white dark:bg-gray-900 rounded-lg"
               onSubmit={handleSubmit}
             >
-              <label className="text-lg font-semibold">Profile Picture</label>
+              <label className="text-lg font-semibold dark:text-gray-300">
+                Profile Picture
+              </label>
               <div className="flex justify-center items-center my-4">
                 <img
                   src={
@@ -87,7 +91,7 @@ const Settings = () => {
                       : publicFolder + user.others.profilePic
                   }
                   alt="userPic"
-                  className="w-[200px] h-[200px] bg-cover rounded-full"
+                  className="w-[200px] h-[200px] bg-cover rounded-full dark:border-2 dark:border-gray-300"
                 />
                 <label htmlFor="fileInput">
                   <UserIcon />
@@ -101,23 +105,29 @@ const Settings = () => {
                 />
               </div>
               <div className="my-4 flex flex-col">
-                <label className="text-lg font-semibold">Username</label>
+                <label className="text-lg font-semibold dark:text-gray-300">
+                  Username
+                </label>
                 <input
-                  className="my-4 border-b-2 border-gray-600 px-2"
+                  className="my-4 border-b-2 border-gray-600 px-2 dark:bg-gray-900 dark:border-gray-500"
                   type="text"
                   placeholder={user.others.username}
                   onChange={(e) => setUsername(e.target.value)}
                 />
-                <label className="text-lg font-semibold">Email</label>
+                <label className="text-lg font-semibold dark:text-gray-300">
+                  Email
+                </label>
                 <input
-                  className="my-4 border-b-2 border-gray-600 px-2"
+                  className="my-4 border-b-2 border-gray-600 px-2 dark:bg-gray-900 dark:border-gray-500"
                   type="email"
                   placeholder={user.others.email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <label className="text-lg font-semibold">Password</label>
+                <label className="text-lg font-semibold dark:text-gray-300">
+                  Password
+                </label>
                 <input
-                  className="my-4 border-b-2 border-gray-600 px-2"
+                  className="my-4 border-b-2 border-gray-600 px-2 dark:bg-gray-900 dark:border-gray-500"
                   type="password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -125,12 +135,12 @@ const Settings = () => {
                 {/* --Followers/Followings */}
                 <div className="flex my-4 gap-8">
                   <div className="flex flex-col items-center">
-                    <h1 className="text-lg">Followers</h1>
-                    <span>0</span>
+                    <h1 className="text-lg dark:text-gray-300">Followers</h1>
+                    <span className="dark:text-gray-300">0</span>
                   </div>
                   <div className="flex flex-col items-center">
-                    <h1 className="text-lg">Followings</h1>
-                    <span>0</span>
+                    <h1 className="text-lg dark:text-gray-300">Followings</h1>
+                    <span className="dark:text-gray-300">0</span>
                   </div>
                 </div>
 
@@ -140,7 +150,7 @@ const Settings = () => {
                 >
                   Update
                 </button>
-                
+
                 {success && (
                   <span className="my-4 text-green-400">
                     Profile has updated!

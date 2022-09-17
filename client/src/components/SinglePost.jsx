@@ -1,20 +1,26 @@
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashAlt, faEdit, faThumbsUp, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrashAlt,
+  faEdit,
+  faThumbsUp,
+  faUserPlus,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { EditIcon } from "./Icons";
 import { PostImageThree } from "./images/Images";
 import { Context } from "../context/Context";
+import { ProfilePic } from "./images/Images";
 
 const SinglePost = () => {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
-  const [like, setLike] = useState(0);
-  const [isLiked, setIsLiked] = useState(false);
   const { user } = useContext(Context);
   const [post, setPost] = useState({});
+  const [like, setLike] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
   // --Update Post--
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -53,24 +59,24 @@ const SinglePost = () => {
   };
 
   const likeHandler = () => {
-    setLike(isLiked ? like - 1 : like + 1)
+    setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
-  }
+  };
   // console.log(user.others.username)
   return (
-    <div className="flex-[9] min-h-screen px-[7%] py-6 ">
-      <div className="my-4 flex flex-col">
+    <div className="flex-[9] min-h-screen px-[7%] py-6 bg-gray-50 dark:bg-gray-800">
+      <div className="my-4 flex flex-col bg-white p-3 rounded-lg dark:bg-gray-900">
         {post.photo && <PostImageThree data={post} />}
         {updateMode ? (
           <input
             type="text"
             value={title}
-            className="text-center indent-4 my-3 text-2xl py-4 border-b-2 border-gray-400 text-gray-500 focus:outline-0"
+            className="text-center indent-4 my-3 text-2xl py-4 border-b-2 border-gray-400 text-gray-500 focus:outline-0 dark:bg-gray-900 dark:text-gray-400"
             autoFocus
             onChange={(e) => setTitle(e.target.value)}
           />
         ) : (
-          <h1 className="text-center indent-4 my-3 text-2xl py-4 ">
+          <h1 className="text-center indent-4 my-3 text-2xl py-4 dark:text-gray-200">
             {title}
             {post.username === user.others.username && (
               <div className="float-right">
@@ -92,25 +98,26 @@ const SinglePost = () => {
         )}
         {updateMode ? (
           <textarea
-            className="my-4 indent-4 h-full text-justify lg:text-start border-b-2 border-gray-400 text-gray-500 focus:outline-0"
+            className="my-4 indent-4 h-full text-justify lg:text-start border-b-2 border-gray-400 text-gray-500 focus:outline-0 dark:bg-gray-900 dark:text-gray-400"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         ) : (
-          <p className="my-4 indent-4 text-justify lg:text-start">
+          <p className="my-4 indent-4 text-justify lg:text-start dark:text-gray-300">
             {description}
           </p>
         )}
 
         <div className="my-2 flex justify-between items-center">
-          <h1 className="">
-            Author:
-            <Link to={`/?username=${post.username}`}>
-              <b>{post.username}</b>
-            </Link>
+          <Link to={`/?username=${post.username}`}>
+            <div className="flex !flex-row items-center gap-2">
+              <ProfilePic data={user} />
+              <b className="dark:text-gray-300">{post.username}</b>
+            </div>
+          </Link>
+          <h1 className="dark:text-gray-300">
+            {new Date(post.createdAt).toDateString()}
           </h1>
-
-          <h1>{new Date(post.createdAt).toDateString()}</h1>
         </div>
 
         <div className="flex flex-row gap-8">
@@ -120,8 +127,8 @@ const SinglePost = () => {
               className="my-4 text-lg border border-blue-500 rounded-full p-2.5 text-white bg-blue-500 cursor-pointer focus:text-blue-500 focus:bg-gray-200 focus:border-gray-200"
               onClick={likeHandler}
             />
-            <span>{like}</span>
-            <span>liked this post</span>
+            <span className="dark:text-gray-300">{like}</span>
+            <span className="dark:text-gray-300">liked this post</span>
           </div>
           <div className="flex flex-row gap-2 item-center">
             <FontAwesomeIcon
@@ -133,7 +140,7 @@ const SinglePost = () => {
         </div>
         {updateMode && (
           <button
-            className="bg-green-400 w-[100px] text-white p-2 cursor-pointer self-center mt-8 duration-300 hover:bg-green-500"
+            className="bg-green-400 w-[100px] text-white p-2 cursor-pointer self-center mt-8 duration-300 hover:bg-green-500 dark:bg-green-500 dark:hover:bg-green-600"
             onClick={updateHandler}
           >
             Update

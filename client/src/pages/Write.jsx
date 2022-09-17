@@ -10,7 +10,7 @@ import axios from "axios";
 import { Context } from "../context/Context";
 
 const Write = () => {
-  const { user} = useContext(Context);
+  const { user } = useContext(Context);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
@@ -20,7 +20,7 @@ const Write = () => {
     const newPost = {
       username: user.others.username,
       title,
-      description
+      description,
     };
     if (file) {
       const data = new FormData();
@@ -40,20 +40,38 @@ const Write = () => {
   };
 
   return (
-    <>
-      <div className="min-h-screen flex flex-col items-center justify-center py-6 ">
-        {file && (
+    <div className="bg-gray-50 dark:bg-gray-800">
+      <div className="min-h-screen flex flex-col items-center justify-center py-6">
+        {file ? (
           <img
-            className="w-[75%] h-auto object-cover bg-cover rounded-md"
+            className="w-[75%] h-[450px] object-cover bg-cover rounded-md"
             src={URL.createObjectURL(file)}
             alt="pp4"
           />
+        ) : (
+          <label
+            htmlFor="fileInput"
+            className="flex items-center justify-center w-[75%] h-[300px] border-2 border-dashed rounded-lg cursor-pointer border-gray-300 duration-300 hover:border-solid hover:border-gray-400"
+          >
+            <h1 className="text-gray-400 cursor-default dark:text-gray-300">
+              Click to insert picture
+            </h1>
+            <input
+              type="file"
+              id="fileInput"
+              className="hidden"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+          </label>
         )}
 
-        <form className="my-4 w-[75%]" onSubmit={handleSubmit}>
+        <form
+          className="my-4 w-[75%] p-4 bg-white rounded-lg dark:bg-gray-900"
+          onSubmit={handleSubmit}
+        >
           <div className="my-4 mx-4 flex justify-between">
             <div className="flex flex-row">
-              <h1 className="flex items-center justify-center mx-2 text-gray-400 cursor-default">
+              <h1 className="flex items-center justify-center mx-2 text-gray-400 cursor-default dark:text-gray-300">
                 Click to insert picture
               </h1>
               <label htmlFor="fileInput" className="">
@@ -69,7 +87,8 @@ const Write = () => {
             <input
               type="text"
               placeholder="title"
-              className="border-b-4 p-2 border-gray-600 w-[50%]"
+              required={true}
+              className="border-b-4 p-2 border-gray-600 w-[50%] dark:text-gray-300 dark:border-gray-200 dark:bg-gray-900"
               onChange={(e) => setTitle(e.target.value)}
               // autoFocus={true}
             />
@@ -79,13 +98,14 @@ const Write = () => {
             <textarea
               placeholder="Write something here..."
               type="text"
-              className="border-b-4 border-gray-600 p-2 h-[200px] w-full active:border-b-4 active:border-black"
+              required={true}
+              className="border-b-4 border-gray-600 p-2 h-[200px] w-full active:border-b-4 active:border-black dark:text-gray-300 dark:border-gray-200 dark:bg-gray-900"
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
 
           <button
-            className="flex justify-center items-center my-4 bg-sky-300 text-white font-semibold mx-auto px-4 py-2 rounded-md duration-300 hover:bg-sky-500"
+            className="flex justify-center items-center my-4 bg-sky-300 text-white font-semibold mx-auto px-4 py-2 rounded-md duration-300 hover:bg-sky-500 dark:bg-sky-500 dark:hover:bg-sky-600"
             type="submit"
           >
             Publish
@@ -93,7 +113,7 @@ const Write = () => {
         </form>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

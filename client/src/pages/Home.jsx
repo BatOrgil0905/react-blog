@@ -19,7 +19,7 @@ const Home = () => {
   }, [search])
 
   return (
-    <div className="bg-white">
+    <div className="bg-zinc-100 dark:bg-gray-800">
       <Header />
       <div className="flex flex-row my-6">
         <Posts posts={posts} />

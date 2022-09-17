@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-gray-200 w-full h-[150px] bg-white">
+    <footer className="border-t border-gray-200 dark:border-black w-full h-[150px] bg-white dark:bg-gray-900">
       <div className="flex flex-row items-center justify-between mt-10 mx-12 sm:mx-24">
-        <h1 className="font-semibold text-2xl">BLOGERRY</h1>
+        <h1 className="font-semibold text-2xl dark:text-white">BLOGERRY</h1>
         <div className="flex flex-col items-center">
-          <h1>Follow Me</h1>
+          <h1 className="dark:text-gray-300">Follow Me</h1>
           <div>
-            <i className="fab fa-facebook-square text-xl mr-4 text-gray-600 cursor-pointer"></i>
-            <i className="fab fa-twitter-square text-xl mr-4 text-gray-600 cursor-pointer"></i>
-            <i className="fab fa-pinterest-square text-xl mr-4 text-gray-600 cursor-pointer"></i>
-            <i className="fab fa-instagram-square text-xl mr-4 text-gray-600 cursor-pointer"></i>
+            <i className="fab fa-facebook-square text-xl mr-4 text-gray-600 dark:text-gray-300 cursor-pointer"></i>
+            <i className="fab fa-twitter-square text-xl mr-4 text-gray-600 dark:text-gray-300 cursor-pointer"></i>
+            <i className="fab fa-pinterest-square text-xl mr-4 text-gray-600 dark:text-gray-300 cursor-pointer"></i>
+            <i className="fab fa-instagram-square text-xl mr-4 text-gray-600 dark:text-gray-300 cursor-pointer"></i>
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@ const Footer = () => {
         </div>
       </div> */}
       <div className="py-2">
-        <p className="text-center">2022 он</p>
+        <p className="text-center dark:text-gray-300">2022 он</p>
       </div>
     </footer>
   );

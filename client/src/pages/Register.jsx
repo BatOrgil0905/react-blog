@@ -27,29 +27,29 @@ const Register = () => {
   };
   return (
     <>
-      <div className="w-full h-screen bg-green-50 flex flex-col justify-center items-center">
-        <h1 className="text-2xl mb-4 cursor-default">Register</h1>
+      <div className="w-full h-screen bg-green-50 flex flex-col justify-center items-center dark:bg-gray-800">
+        <h1 className="text-2xl mb-4 cursor-default dark:text-gray-300">Register</h1>
         <form
-          className="w-[370px] flex flex-col p-4 rounded-lg bg-white"
+          className="w-[370px] flex flex-col p-4 rounded-lg bg-white dark:bg-gray-900"
           onSubmit={handleSubmit}
         >
-          <label className="mb-2 text-xl">Username</label>
+          <label className="mb-2 text-xl dark:text-gray-300">Username</label>
           <input
-            className="py-2 px-4 w-full border-b border-black mb-4"
+            className="py-2 px-4 w-full border-b border-black mb-4 dark:bg-gray-900 dark:border-gray-300 dark:text-gray-300"
             type="text"
             placeholder="Enter your username."
             onChange={(e) => setUsername(e.target.value)}
           />
-          <label className="mb-2 text-xl">Email</label>
+          <label className="mb-2 text-xl dark:text-gray-300">Email</label>
           <input
-            className="py-2 px-4 w-full border-b border-black mb-4"
+            className="py-2 px-4 w-full border-b border-black mb-4 dark:bg-gray-900 dark:border-gray-300 dark:text-gray-300"
             type="text"
             placeholder="Enter your email."
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label className="mb-2 text-xl">Password</label>
+          <label className="mb-2 text-xl dark:text-gray-300">Password</label>
           <input
-            className="py-2 px-4 w-full border-b border-black mb-4"
+            className="py-2 px-4 w-full border-b border-black mb-4 dark:bg-gray-900 dark:border-gray-300 dark:text-gray-300"
             type="password"
             placeholder="Enter your password."
             onChange={(e) => setPassword(e.target.value)}
