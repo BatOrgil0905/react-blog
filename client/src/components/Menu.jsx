@@ -38,8 +38,8 @@ export const MenuDesktop = () => {
           </li>
           <div className="dropdown-content hidden absolute min-w-min bg-white dark:bg-gray-900 shadow-lg leftt-[10%] py-4 z-20">
             {category.map((cat) => (
-              <Link to={`/?cat=${cat.name}`}>
-                <li className="block text-xl font-light dark:text-gray-200 cursor-pointer px-6 py-1 hover:bg-gray-100 dark:hover:bg-gray-800 ">
+              <Link key={cat._id} to={`/?category=${cat.name}`}>
+                <li key={cat._id} className="block text-xl font-light dark:text-gray-200 cursor-pointer px-6 py-1 hover:bg-gray-100 dark:hover:bg-gray-800 ">
                   {cat.name}
                 </li>
               </Link>
@@ -99,8 +99,11 @@ export const MenuMobile = () => {
           </li>
           <div className="dropdown-content hidden absolute w-full bg-gray-50 dark:bg-gray-900 right-[10%] py-4 z-20">
             {category.map((cat) => (
-              <Link to={`/?cat=${cat.name}`}>
-                <li className="block w-full text-xl font-light dark:text-gray-200 cursor-pointer px-6 py-1 hover:bg-gray-100 dark:hover:bg-gray-800">
+              <Link key={cat._id} to={`/?category=${cat.name}`}>
+                <li
+                  key={cat._id}
+                  className="block w-full text-xl font-light dark:text-gray-200 cursor-pointer px-6 py-1 hover:bg-gray-100 dark:hover:bg-gray-800"
+                >
                   {cat.name}
                 </li>
               </Link>

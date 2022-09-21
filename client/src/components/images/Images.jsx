@@ -22,7 +22,7 @@ export const ProfilePic = ({data}) => {
     <div className="w-[45px] h-[45px] rounded-full overflow-hidden cursor-pointer">
       <img
         className="w-full h-full bg-cover object-cover rounded-full"
-        src={data.others.profilePic ? publicFolder + data.others.profilePic : blank}
+        src={data?.others.profilePic ? publicFolder + data.others.profilePic : blank}
         alt="profile pic"
       />
     </div>

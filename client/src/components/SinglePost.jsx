@@ -9,7 +9,6 @@ import {
 import { Link } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
-import { EditIcon } from "./Icons";
 import { PostImageThree } from "./images/Images";
 import { Context } from "../context/Context";
 import { ProfilePic } from "./images/Images";
@@ -62,7 +61,6 @@ const SinglePost = () => {
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
-  // console.log(user.others.username)
   return (
     <div className="flex-[9] min-h-screen px-[7%] py-6 bg-gray-50 dark:bg-gray-800">
       <div className="my-4 flex flex-col bg-white p-3 rounded-lg dark:bg-gray-900">
@@ -78,7 +76,7 @@ const SinglePost = () => {
         ) : (
           <h1 className="text-center indent-4 my-3 text-2xl py-4 dark:text-gray-200">
             {title}
-            {post.username === user.others.username && (
+            {post.username === user?.others.username && (
               <div className="float-right">
                 <FontAwesomeIcon
                   icon={faEdit}
@@ -96,6 +94,13 @@ const SinglePost = () => {
             )}
           </h1>
         )}
+        {/* <div>
+          <Link to={`/?category=${post.categories}`}>
+            {post.categories.map((cat) => (
+              <h1 className="dark:text-gray-300 mx-4 cursor-pointer">{cat}</h1>
+            ))}
+          </Link>
+        </div> */}
         {updateMode ? (
           <textarea
             className="my-4 indent-4 h-full text-justify lg:text-start border-b-2 border-gray-400 text-gray-500 focus:outline-0 dark:bg-gray-900 dark:text-gray-400"

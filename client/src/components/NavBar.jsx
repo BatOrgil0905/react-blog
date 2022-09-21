@@ -25,7 +25,7 @@ const NavBar = () => {
       <div className="myOpenMenu dark:bg-gray-900">
         <div className="sticky top-0 z-20">
           <a
-            href="javascript:void(0)"
+            href="#!"
             className="absolute right-1 pr-4 dark:text-gray-300 text-4xl"
             onClick={closeMenu}
           >

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import { AddIcon } from "../components/Icons";
 // import {
@@ -15,12 +15,22 @@ const Write = () => {
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
 
+  const [category, setCategory] = useState([]);
+  useEffect(() => {
+    const getCategory = async () => {
+      const response = await axios.get("/categories");
+      setCategory(response.data);
+    };
+    getCategory();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = {
       username: user.others.username,
       title,
       description,
+      category
     };
     if (file) {
       const data = new FormData();
@@ -28,14 +38,15 @@ const Write = () => {
       data.append("name", filename);
       data.append("file", file);
       newPost.photo = filename;
+      console.log(filename)
       try {
         await axios.post("/upload", data);
       } catch (err) {}
     }
     try {
       const res = await axios.post("/posts", newPost);
-      window.location.replace("/post/" + res.data.savedPost._id);
-      // console.log(res)
+      window.location.replace("/posts/" + res.data.savedPost._id);
+      console.log(res)
     } catch (err) {}
   };
 
@@ -92,6 +103,30 @@ const Write = () => {
               onChange={(e) => setTitle(e.target.value)}
               // autoFocus={true}
             />
+          </div>
+
+          <div className="m-4 ">
+            <label
+              className="text-gray-400 dark:text-gray-300 mx-2"
+              htmlFor="category"
+            >
+              Ангилалаа сонгоно уу:
+            </label>
+            <select
+              className="text-gray-400 border m-1 px-2 py-1 dark:bg-gray-900 dark:border-gray-500"
+              id="category"
+              multiple={true}
+            >
+              {category.map((cat) => (
+                <option
+                  className="text-gray-400 mx-2 px-2 py-1 dark:bg-gray-900 dark:text-gray-300"
+                  key={cat._id}
+                  value={cat.name}
+                >
+                  {cat.name}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="mx-4">

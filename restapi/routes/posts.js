@@ -48,6 +48,7 @@ route.get("/", async (req, res) => {
       posts = await Post.find();
     }
     res.status(200).json(posts);
+    console.log(posts);
   } catch (err) {
     res.status(500).json({
       message: "Хүсэлт амжилтгүй боллоо.",
