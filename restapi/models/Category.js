@@ -5,7 +5,7 @@ const CategorySchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      ref: "Post",
+      // ref: "Post",
     },
   },
   { timestamps: true }

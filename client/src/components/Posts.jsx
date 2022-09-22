@@ -8,11 +8,15 @@ const Posts = ({posts}) => {
       <h1 className="text-center py-2 mx-6 my-4 border-y border-black text-xl dark:border-gray-300 dark:text-white">
           Blogs
       </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-4 mb-12">
-        {posts.map((post) => (
-          <Post key={post._id} data={post} />
-        ))}
-      </div>
+      {posts.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-4 mb-12">
+          {posts.map((post) => (
+            <Post key={post._id} data={post} />
+          ))}
+        </div>
+      ) : (
+        <h1 className="h-[50vh] text-center flex items-center justify-center text-2xl dark:text-gray-300">Уучлаарай!! Пост олдсонгүй!</h1>
+      )}
     </div>
   );
 };

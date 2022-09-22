@@ -135,13 +135,13 @@ const SinglePost = () => {
             <span className="dark:text-gray-300">{like}</span>
             <span className="dark:text-gray-300">liked this post</span>
           </div>
-          <div className="flex flex-row gap-2 item-center">
+          {/* <div className="flex flex-row gap-2 item-center">
             <FontAwesomeIcon
               icon={faUserPlus}
               className="my-4 text-lg border border-green-500 rounded-full p-2.5 py-3 text-white bg-green-500 cursor-pointer focus:text-green-500 focus:bg-gray-200 focus:border-gray-200"
               title={`Follow ${post.username}`}
             />
-          </div>
+          </div> */}
         </div>
         {updateMode && (
           <button

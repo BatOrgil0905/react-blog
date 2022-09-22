@@ -68,12 +68,12 @@ const Settings = () => {
             <span className="text-2xl my-4 dark:text-gray-300">
               Update Your Account
             </span>
-            <span
+            {/* <span
               className="text-red-400 cursor-pointer duration-300 hover:text-lg"
               onClick={deleteHandler}
             >
               Delete Your Account
-            </span>
+            </span> */}
           </div>
           <div className="flex items-center justify-center">
             <form
@@ -90,7 +90,6 @@ const Settings = () => {
                       ? URL.createObjectURL(file)
                       : publicFolder + user.others.profilePic
                   }
-                  alt="userPic"
                   className="w-[200px] h-[200px] bg-cover rounded-full dark:border-2 dark:border-gray-300"
                 />
                 <label htmlFor="fileInput">
@@ -109,7 +108,7 @@ const Settings = () => {
                   Username
                 </label>
                 <input
-                  className="my-4 border-b-2 border-gray-600 px-2 dark:bg-gray-900 dark:border-gray-500"
+                  className="my-4 border-b-2 border-gray-600 px-2 dark:bg-gray-900 dark:border-gray-500 dark:text-gray-300"
                   type="text"
                   placeholder={user.others.username}
                   onChange={(e) => setUsername(e.target.value)}
@@ -118,7 +117,7 @@ const Settings = () => {
                   Email
                 </label>
                 <input
-                  className="my-4 border-b-2 border-gray-600 px-2 dark:bg-gray-900 dark:border-gray-500"
+                  className="my-4 border-b-2 border-gray-600 px-2 dark:bg-gray-900 dark:border-gray-500 dark:text-gray-300"
                   type="email"
                   placeholder={user.others.email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -127,13 +126,13 @@ const Settings = () => {
                   Password
                 </label>
                 <input
-                  className="my-4 border-b-2 border-gray-600 px-2 dark:bg-gray-900 dark:border-gray-500"
+                  className="my-4 border-b-2 border-gray-600 px-2 dark:bg-gray-900 dark:border-gray-500 dark:text-gray-300"
                   type="password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
 
                 {/* --Followers/Followings */}
-                <div className="flex my-4 gap-8">
+                {/* <div className="flex my-4 gap-8">
                   <div className="flex flex-col items-center">
                     <h1 className="text-lg dark:text-gray-300">Followers</h1>
                     <span className="dark:text-gray-300">0</span>
@@ -142,7 +141,7 @@ const Settings = () => {
                     <h1 className="text-lg dark:text-gray-300">Followings</h1>
                     <span className="dark:text-gray-300">0</span>
                   </div>
-                </div>
+                </div> */}
 
                 <button
                   className="my-4 mx-auto bg-green-400 w-[150px] text-white py-2 duration-300 hover:bg-green-500"

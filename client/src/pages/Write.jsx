@@ -115,7 +115,6 @@ const Write = () => {
             <select
               className="text-gray-400 border m-1 px-2 py-1 dark:bg-gray-900 dark:border-gray-500"
               id="category"
-              multiple={true}
             >
               {category.map((cat) => (
                 <option

@@ -21,7 +21,7 @@ const PostSchema = new mongoose.Schema(
     categories: {
       type: Array,
       required: false,
-      ref: "Category",
+      // ref: "Category",
     },
     likes: {
       type: Array,

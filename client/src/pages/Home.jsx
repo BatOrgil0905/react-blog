@@ -9,11 +9,13 @@ import { useLocation } from "react-router-dom";
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const {search} = useLocation();
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchPost = async () => {
       const res = await axios.get('/posts' + search);
       setPosts(res.data);
+      setLoading(false);
     }
     fetchPost()
   }, [search])
@@ -22,7 +24,7 @@ const Home = () => {
     <div className="bg-zinc-100 dark:bg-gray-800">
       <Header />
       <div className="flex flex-row my-6">
-        <Posts posts={posts} />
+        <Posts posts={posts} loading={loading}/>
       </div>
       <Footer />
     </div>
