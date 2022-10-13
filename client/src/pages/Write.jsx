@@ -8,6 +8,7 @@ import { AddIcon } from "../components/Icons";
 // } from "../components/images/Images";
 import axios from "axios";
 import { Context } from "../context/Context";
+import profanityWords from "../components/profanityWords";
 
 const Write = () => {
   const { user } = useContext(Context);
@@ -15,14 +16,17 @@ const Write = () => {
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
 
-  const [category, setCategory] = useState([]);
+  // const [category, setCategory] = useState([]);
   useEffect(() => {
-    const getCategory = async () => {
-      const response = await axios.get("/categories");
-      setCategory(response.data);
-    };
-    getCategory();
-  }, []);
+    document.title = "Шинэ пост оруулах";
+  });
+  // useEffect(() => {
+  //   const getCategory = async () => {
+  //     const response = await axios.get("/categories");
+  //     setCategory(response.data);
+  //   };
+  //   getCategory();
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +34,7 @@ const Write = () => {
       username: user.others.username,
       title,
       description,
-      category
+      // category
     };
     if (file) {
       const data = new FormData();
@@ -38,16 +42,20 @@ const Write = () => {
       data.append("name", filename);
       data.append("file", file);
       newPost.photo = filename;
-      console.log(filename)
+      console.log(filename);
       try {
         await axios.post("/upload", data);
       } catch (err) {}
     }
-    try {
-      const res = await axios.post("/posts", newPost);
-      window.location.replace("/posts/" + res.data.savedPost._id);
-      console.log(res)
-    } catch (err) {}
+    if (profanityWords.length >= 5) {
+      alert("Таны постонд зохимжгүй үгс хэт их агуулсан байна!!!");
+    } else {
+      try {
+        const res = await axios.post("/posts", newPost);
+        window.location.replace("/posts/" + res.data.savedPost._id);
+        console.log(res);
+      } catch (err) {}
+    }
   };
 
   return (
@@ -80,7 +88,7 @@ const Write = () => {
           className="my-4 w-[75%] p-4 bg-white rounded-lg dark:bg-gray-900"
           onSubmit={handleSubmit}
         >
-          <div className="my-4 mx-4 flex justify-between">
+          <div className="my-4 mx-4 flex flex-col md:flex-row justify-between">
             <div className="flex flex-row">
               <h1 className="flex items-center justify-center mx-2 text-gray-400 cursor-default dark:text-gray-300">
                 Click to insert picture
@@ -99,13 +107,13 @@ const Write = () => {
               type="text"
               placeholder="title"
               required={true}
-              className="border-b-4 p-2 border-gray-600 w-[50%] dark:text-gray-300 dark:border-gray-200 dark:bg-gray-900"
+              className="border-b-4 p-2 border-gray-600 my-4 md:my-0 w-full md:w-[50%] dark:text-gray-300 dark:border-gray-200 dark:bg-gray-900"
               onChange={(e) => setTitle(e.target.value)}
               // autoFocus={true}
             />
           </div>
 
-          <div className="m-4 ">
+          {/* <div className="m-4 ">
             <label
               className="text-gray-400 dark:text-gray-300 mx-2"
               htmlFor="category"
@@ -121,12 +129,13 @@ const Write = () => {
                   className="text-gray-400 mx-2 px-2 py-1 dark:bg-gray-900 dark:text-gray-300"
                   key={cat._id}
                   value={cat.name}
+                  onChange={(e)=> setCategory(e.target.value)}
                 >
                   {cat.name}
                 </option>
               ))}
             </select>
-          </div>
+          </div> */}
 
           <div className="mx-4">
             <textarea

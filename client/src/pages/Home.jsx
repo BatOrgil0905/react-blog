@@ -10,6 +10,7 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
   const {search} = useLocation();
   const [loading, setLoading] = useState(true)
+  // console.log(search)
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -19,6 +20,10 @@ const Home = () => {
     }
     fetchPost()
   }, [search])
+
+  useEffect(()=>{
+    document.title = "BLOGGERY - Блог бичдэг вебсайт"
+  })
 
   return (
     <div className="bg-zinc-100 dark:bg-gray-800">

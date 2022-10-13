@@ -8,6 +8,7 @@ route.post("/", async (req, res) => {
   const post = new Post(req.body);
   try {
     const savedPost = await post.save();
+    console.log(savedPost);
     res.status(200).json({
       message: "Блог амжилттай орлоо.",
       savedPost,
@@ -15,7 +16,7 @@ route.post("/", async (req, res) => {
   } catch (err) {
     res.status(500).json({
       message: "Блог оруулах үед алдаа гарлаа",
-      err
+      err,
     });
   }
 });
@@ -33,20 +34,27 @@ route.get("/:id", async (req, res) => {
   }
 });
 
-//Get All Posts
+//Get All Posts by username, category, title
 route.get("/", async (req, res) => {
   const username = req.query.username;
   const category = req.query.category;
+  const search_query = req.query.q;
 
   try {
     let posts;
+
     if (username) {
       posts = await Post.find({ username: username });
     } else if (category) {
       posts = await Post.find({ categories: { $in: [category] } });
+    } else if (search_query) {
+      posts = await Post.find({
+        title: { $regex: search_query, $options: "i" }
+      });
     } else {
       posts = await Post.find();
     }
+
     res.status(200).json(posts);
     // console.log(posts);
   } catch (err) {
@@ -106,19 +114,18 @@ route.delete("/:id", async (req, res) => {
 
 //Like & Dislike a Post
 route.put("/:id", async (req, res) => {
-  try{
+  try {
     const post = await Post.findById(req.params.id);
-    if(!post.likes.includes(req.body.userId)){
-      await post.updateOne({$push: {likes: req.body.userId}});
-      res.status(200).json("Post has been liked")
+    if (!post.likes.includes(req.body.userId)) {
+      await post.updateOne({ $push: { likes: req.body.userId } });
+      res.status(200).json("Post has been liked");
+    } else {
+      await post.updateOne({ $pull: { likes: req.body.userId } });
+      res.status(200).json("Post has been disliked");
     }
-    else {
-      await post.updateOne({$pull: { likes: req.body.userId}});
-      res.status(200).json("Post has been disliked")
-    }
-  }catch(err){
-    res.status(500).json(err)
+  } catch (err) {
+    res.status(500).json(err);
   }
-})
+});
 
 module.exports = route;

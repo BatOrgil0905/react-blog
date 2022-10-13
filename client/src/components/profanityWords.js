@@ -1,0 +1,4 @@
+let profanityWords =
+  /fuck off|fuck you|fuck yourself|зайл|зл|bitch|fuck|shit|sex|porn|penis|vagina|whore|үхээч|пизда|пзда|ста|сда|pzda|pidsa|pizda|gchii|gechii|өлөгчин|жингэр|гичий|гичии|ухна|үтрээ|боожгой|секс|порн|порно|биеэ үнэл|амиа хорол|asshole|suicide|kith|pedophile|новш|новшийн|novsh|хараал идсэн|хуц|шаа|шаах|шаана|шаасан|шаагаарай|shaa|хараал идээсэй|завхай|шээсэн|садар эм|явдалтай охин|явдалтай эм|явдалтай залуу|янхан|муу янхан|хар гуйлгачин|үхэж байсан хар новш|үхэж байсан хар гуйлгачин|дээврээс үсэрч үх|хутгаар өөрийгөө бүл|биеэ үнэлэгч|заваан янхан|хор ууж үх|asH0le|shitbag|cunt|bastard|cockhead|piss off|twat|faire|scheisse|fick dich|arsehole|fck|molest|kill yourself|gypsy|чөтгөр ав|дамсаг|т1|son of a bitch|faak|бэлгэвчний цоорхой|үрийн шингэн|алны үс|motherfuck|motherfucker|shitface/gi;
+
+module.exports = profanityWords;

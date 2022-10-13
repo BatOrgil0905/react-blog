@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 import { Context } from "../context/Context";
@@ -10,6 +10,9 @@ const Login = () => {
   const {dispatch, isFetching} = useContext(Context);
   const [error, setError] = useState(false);
 
+  useEffect(()=>{
+    document.title = "Нэвтрэх хуудас"
+  })
 
   const handleSubmit = async (e) => {
     setError(false)

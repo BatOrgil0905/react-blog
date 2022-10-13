@@ -3,8 +3,7 @@ const PostSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
-      // unique: true,
+      required: true
     },
     description: {
       type: String,
@@ -19,9 +18,9 @@ const PostSchema = new mongoose.Schema(
       required: true,
     },
     categories: {
-      type: Array,
+      type: [String],
       required: false,
-      // ref: "Category",
+      // ref: "Category", 
     },
     likes: {
       type: Array,

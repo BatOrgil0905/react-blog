@@ -20,6 +20,15 @@ export const SearchIcon = () => {
   );
 };
 
+export const SearchIconTwo = () => {
+  return (
+    <FontAwesomeIcon
+      icon={faSearch}
+      className="text-lg text-gray-600 cursor-pointer dark:text-gray-300 pl-2"
+    />
+  );
+}
+
 export const EditIcon = () => {
   return (
     <FontAwesomeIcon

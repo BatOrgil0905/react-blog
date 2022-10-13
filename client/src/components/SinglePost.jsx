@@ -4,7 +4,6 @@ import {
   faTrashAlt,
   faEdit,
   faThumbsUp,
-  faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
@@ -12,14 +11,15 @@ import { useLocation } from "react-router-dom";
 import { PostImageThree } from "./images/Images";
 import { Context } from "../context/Context";
 import { ProfilePic } from "./images/Images";
+import profanityWords from "./profanityWords";
 
 const SinglePost = () => {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const { user } = useContext(Context);
   const [post, setPost] = useState({});
-  const [like, setLike] = useState(0);
-  const [isLiked, setIsLiked] = useState(false);
+  // const [like, setLike] = useState(0);
+  // const [isLiked, setIsLiked] = useState(false);
   // --Update Post--
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -35,6 +35,15 @@ const SinglePost = () => {
     };
     getPost();
   }, [path]);
+
+  //Changing dynamic title
+  useEffect(() => {
+    document.title = title;
+  });
+
+  // useEffect(()=>{
+  //   setIsLiked(post.likes.include(user.others._id));
+  // },[user.others._id, post.likes])
 
   const deleteHandler = async () => {
     alert(`Are you sure delete "${post.title}"`);
@@ -57,10 +66,13 @@ const SinglePost = () => {
     } catch (err) {}
   };
 
-  const likeHandler = () => {
-    setLike(isLiked ? like - 1 : like + 1);
-    setIsLiked(!isLiked);
-  };
+  // const likeHandler = () => {
+  //   try{
+  //     axios.put(`/posts/${post._id}`, {userId: user.others._id});
+  //   }catch(err){}
+  //   setLike(isLiked ? like - 1 : like + 1);
+  //   setIsLiked(!isLiked);
+  // };
   return (
     <div className="flex-[9] min-h-screen px-[7%] py-6 bg-gray-50 dark:bg-gray-800">
       <div className="my-4 flex flex-col bg-white p-3 rounded-lg dark:bg-gray-900">
@@ -75,7 +87,7 @@ const SinglePost = () => {
           />
         ) : (
           <h1 className="text-center indent-4 my-3 text-2xl py-4 dark:text-gray-200">
-            {title}
+            {title.replace(profanityWords, "[---]")}
             {post.username === user?.others.username && (
               <div className="float-right">
                 <FontAwesomeIcon
@@ -109,7 +121,7 @@ const SinglePost = () => {
           />
         ) : (
           <p className="my-4 indent-4 text-justify lg:text-start dark:text-gray-300">
-            {description}
+            {description.replace(profanityWords, "[---]")}
           </p>
         )}
 
@@ -125,7 +137,7 @@ const SinglePost = () => {
           </h1>
         </div>
 
-        <div className="flex flex-row gap-8">
+        {/* <div className="flex flex-row gap-8">
           <div className="flex flex-row gap-2 items-center">
             <FontAwesomeIcon
               icon={faThumbsUp}
@@ -135,14 +147,14 @@ const SinglePost = () => {
             <span className="dark:text-gray-300">{like}</span>
             <span className="dark:text-gray-300">liked this post</span>
           </div>
-          {/* <div className="flex flex-row gap-2 item-center">
+          <div className="flex flex-row gap-2 item-center">
             <FontAwesomeIcon
               icon={faUserPlus}
               className="my-4 text-lg border border-green-500 rounded-full p-2.5 py-3 text-white bg-green-500 cursor-pointer focus:text-green-500 focus:bg-gray-200 focus:border-gray-200"
               title={`Follow ${post.username}`}
             />
-          </div> */}
-        </div>
+          </div>
+        </div> */}
         {updateMode && (
           <button
             className="bg-green-400 w-[100px] text-white p-2 cursor-pointer self-center mt-8 duration-300 hover:bg-green-500 dark:bg-green-500 dark:hover:bg-green-600"

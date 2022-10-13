@@ -10,6 +10,7 @@ import { UserIcon } from "../components/Icons";
 import { Context } from "../context/Context";
 // import SideBar from "../components/SideBar";
 import axios from "axios";
+import { useEffect } from "react";
 
 const Settings = () => {
   const { user, dispatch } = useContext(Context);
@@ -20,6 +21,10 @@ const Settings = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(false);
+
+  useEffect(()=>{
+    document.title = "Хэрэглэгчийн тохиргоо"
+  })
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,7 +68,7 @@ const Settings = () => {
   return (
     <>
       <div className="flex bg-gray-50 dark:bg-gray-800">
-        <div className="flex-[9] mx-4">
+        <div className="flex-[12] mx-4">
           <div className="flex flex-col lg:flex-row justify-between my-4">
             <span className="text-2xl my-4 dark:text-gray-300">
               Update Your Account
@@ -77,7 +82,7 @@ const Settings = () => {
           </div>
           <div className="flex items-center justify-center">
             <form
-              className="my-8 p-4 shadow-2xl w-[60%] bg-white dark:bg-gray-900 rounded-lg"
+              className="flex flex-col items-center justify-center my-8 p-4 shadow-2xl w-[90%] md:w-[75%] lg:w-[60%] bg-white dark:bg-gray-900 rounded-lg"
               onSubmit={handleSubmit}
             >
               <label className="text-lg font-semibold dark:text-gray-300">
@@ -90,7 +95,7 @@ const Settings = () => {
                       ? URL.createObjectURL(file)
                       : publicFolder + user.others.profilePic
                   }
-                  className="w-[200px] h-[200px] bg-cover rounded-full dark:border-2 dark:border-gray-300"
+                  className="w-[100px] h-[100px] lg:w-[200px] lg:h-[200px] bg-cover rounded-full dark:border-2 dark:border-gray-300"
                 />
                 <label htmlFor="fileInput">
                   <UserIcon />

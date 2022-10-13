@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ProfilePic } from "./images/Images";
-import { SearchIcon, SunIcon } from "./Icons";
-import { Link } from "react-router-dom";
+import { SearchIcon} from "./Icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { Link, useNavigate } from "react-router-dom";
 import Switch from "../theme/Switch";
 import { MenuDesktop, MenuMobile, MenuToggle } from "./Menu";
 import { useContext } from "react";
 import { Context } from "../context/Context";
 
 const NavBar = () => {
-  const {user} = useContext(Context);
+  const { user } = useContext(Context);
+  const [searchText, setSearchText] = useState("");
+  const navigate = useNavigate()
 
-  function openResMenu(){
+  function openResMenu() {
     const myOpenMenu = document.querySelector(".myOpenMenu");
     myOpenMenu.style.width = "40%";
   }
 
-  function closeMenu(){
+  function closeMenu() {
     const myOpenMenu = document.querySelector(".myOpenMenu");
     myOpenMenu.style.width = "0%";
   }
@@ -77,9 +81,20 @@ const NavBar = () => {
         )}
         <div className="dropdown relative">
           <SearchIcon />
-          <div className="dropdown-content hidden absolute w-[250px] -right-3 border-t-2 border-gray-400 dark:border-slate-900 px-4 bg-white dark:bg-gray-900 py-4 z-20">
-            <input type="text" placeholder="search here..." className="block w-full bg-gray-100 dark:bg-gray-800 dark:text-gray-300 p-2" />
-
+          <div className="dropdown-content flex hidden absolute w-[250px] -right-3 border-2 border-gray-400 dark:border-slate-900 px-4 bg-white dark:bg-gray-900 py-4 z-20">
+            <div className="flex flex-row items-center justify-center">
+              <input
+                type="text"
+                placeholder="search title..."
+                className="block w-[200px] bg-gray-100 dark:bg-gray-800 dark:text-gray-300 p-2"
+                onChange={(e) => setSearchText(e.target.value)}
+              />
+              <FontAwesomeIcon
+                icon={faSearch} 
+                className="text-lg text-gray-600 cursor-pointer dark:text-gray-300 pl-2"
+                onClick={() => navigate(`/?q=${searchText}`)}
+              />
+            </div>
           </div>
         </div>
         <Switch />

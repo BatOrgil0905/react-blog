@@ -1,6 +1,7 @@
 import React from "react";
 // import Footer from "./Footer";
 import { Link } from "react-router-dom";
+import profanityWords from "./profanityWords";
 
 
 const Post = ({ data }) => {
@@ -25,14 +26,14 @@ const Post = ({ data }) => {
 
           <div>
             <p className="text-lg font-semibold my-1 p-1 px-2 dark:text-white">
-              {data.title}
+              {data.title.replace(profanityWords, "[---]")}
             </p>
 
             <h2 className="text-sm text-gray-700 border-y border-gray-600 p-1 px-2 dark:text-gray-300">
               {new Date(data.createdAt).toDateString()}
             </h2>
             <p className="text-[14px] p-1 px-2 dark:text-gray-200 h-[80px]">
-              {data.description.substring(0, 80)}...
+              {data.description.substring(0, 80).replace(profanityWords,"[---]")}...
             </p>
             <h1 className="my-2 p-1 mx-1 px-2 dark:text-gray-200">
               Autor:

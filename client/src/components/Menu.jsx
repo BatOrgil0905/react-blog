@@ -7,17 +7,17 @@ import { Link } from "react-router-dom";
 import { Context } from "../context/Context";
 
 export const MenuDesktop = () => {
-  const [category, setCategory] = useState([]);
-  useEffect(() => {
-    const getCategory = async () => {
-      const response = await axios.get("/categories");
-      setCategory(response.data);
-    };
-    getCategory();
-  }, []);
+  // const [category, setCategory] = useState([]);
+  // useEffect(() => {
+  //   const getCategory = async () => {
+  //     const response = await axios.get("/categories");
+  //     setCategory(response.data);
+  //   };
+  //   getCategory();
+  // }, []);
   const { user, dispatch } = useContext(Context);
   const handleLogout = () => {
-    alert("Do you want to LOGOUT")
+    alert("Do you want to LOGOUT");
     dispatch({ type: "LOGOUT" });
   };
   return (
@@ -32,7 +32,7 @@ export const MenuDesktop = () => {
         <li className="py-2.5 mr-6 text-xl dark:text-gray-200 font-light cursor-pointer duration-300 hover:text-gray-600 hover:scale-105 dark:hover:text-gray-300">
           <Link to="/write">Write</Link>
         </li>
-        <div className="dropdown relative">
+        {/* <div className="dropdown relative">
           <li className="py-2.5 mr-6 text-xl dark:text-gray-200 font-light cursor-pointer duration-300 hover:text-gray-600 hover:scale-105 dark:hover:text-gray-300">
             Category
           </li>
@@ -45,7 +45,7 @@ export const MenuDesktop = () => {
               </Link>
             ))}
           </div>
-        </div>
+        </div> */}
         <li
           className="py-2.5 mr-6 text-xl dark:text-gray-200 font-light cursor-pointer duration-300 hover:text-gray-600 hover:scale-105 dark:hover:text-gray-300"
           onClick={handleLogout}
@@ -68,14 +68,14 @@ export const MenuToggle = () => {
 };
 
 export const MenuMobile = () => {
-  const [category, setCategory] = useState([]);
-  useEffect(() => {
-    const getCategory = async () => {
-      const response = await axios.get("/categories");
-      setCategory(response.data);
-    };
-    getCategory();
-  }, []);
+  // const [category, setCategory] = useState([]);
+  // useEffect(() => {
+  //   const getCategory = async () => {
+  //     const response = await axios.get("/categories");
+  //     setCategory(response.data);
+  //   };
+  //   getCategory();
+  // }, []);
   const { user, dispatch } = useContext(Context);
   const handleLogout = () => {
     alert("Do you want to LOGOUT");
@@ -93,7 +93,7 @@ export const MenuMobile = () => {
         <li className="py-2.5 mr-6 text-xl font-light cursor-pointer duration-300 hover:text-gray-600 hover:scale-105 dark:text-gray-200 dark:hover:text-gray-300">
           <Link to="/write">Write</Link>
         </li>
-        <div className="dropdown relative">
+        {/* <div className="dropdown relative">
           <li className="py-2.5 mr-6 text-xl font-light cursor-pointer duration-300 hover:text-gray-600 hover:scale-105 dark:text-gray-200 dark:hover:text-gray-300">
             Category
           </li>
@@ -109,7 +109,7 @@ export const MenuMobile = () => {
               </Link>
             ))}
           </div>
-        </div>
+        </div> */}
         <li
           className="py-2.5 mr-6 text-xl font-light cursor-pointer duration-300 hover:text-gray-600 hover:scale-105 dark:text-gray-200 dark:hover:text-gray-300"
           onClick={handleLogout}
